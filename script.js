@@ -76,12 +76,22 @@ function toggleStyle(id) {
         renderRejected()
     }
 
-    const tabCountWrapper = document.getElementById('tab-count-wrapper');
+    const tabCountToggle = document.getElementById('tab-count-toggle');
     if (id === 'all-filter-btn') {
-        tabCountWrapper.classList.add('hidden');
+        tabCountToggle.classList.add('hidden');
     } else {
-        tabCountWrapper.classList.remove('hidden');
+        tabCountToggle.classList.remove('hidden');
     }
+
+
+    if (id === 'all-filter-btn') {
+        tabCountToggle.classList.add('hidden');
+        document.getElementById('empty-message').classList.add('hidden');
+
+    } else {
+        tabCountToggle.classList.remove('hidden');
+    }
+
 
     updateTabJobsCount();
 }
@@ -93,25 +103,29 @@ mainContainer.addEventListener('click', function (event) {
         // const hasParentNode = event.target.parentNode.parentNode;
         const hasParentNode = event.target.closest('.flex.justify-between.bg-white');
 
-        const jobName = hasParentNode.querySelector('.job-name').innerText
+        const companyName = hasParentNode.querySelector('.company-name').innerText
+        const position = hasParentNode.querySelector('.position').innerText
+        const location = hasParentNode.querySelector('.location').innerText
         const jobType = hasParentNode.querySelector('.job-type').innerText
-        const remoteFullTime = hasParentNode.querySelector('.remote-full-time').innerText
+        const salary = hasParentNode.querySelector('.salary').innerText
         const status = hasParentNode.querySelector('.status').innerText
-        const notes = hasParentNode.querySelector('.notes').innerText
+        const description = hasParentNode.querySelector('.description').innerText
 
         hasParentNode.querySelector('.status').innerText = 'Interview';
 
 
 
         const cardInfo = {
-            jobName,
+            companyName,
+            position,
+            location,
             jobType,
-            remoteFullTime,
+            salary,
             status: 'Interview',
-            notes
+            description
         }
 
-        const jobExist = interviewList.find(item => item.jobName == cardInfo.jobName)
+        const jobExist = interviewList.find(item => item.companyName == cardInfo.companyName)
 
         if (!jobExist) {
             interviewList.push(cardInfo)
@@ -119,7 +133,7 @@ mainContainer.addEventListener('click', function (event) {
             console.log('Current interviewList:', interviewList);
         }
 
-        rejectedList = rejectedList.filter(item => item.jobName != cardInfo.jobName)
+        rejectedList = rejectedList.filter(item => item.companyName != cardInfo.companyName)
 
         if (currentStatus == 'rejected-filter-btn') {
             renderRejected()
@@ -132,24 +146,28 @@ mainContainer.addEventListener('click', function (event) {
         // const hasParentNode = event.target.parentNode.parentNode;
         const hasParentNode = event.target.closest('.flex.justify-between.bg-white');
 
-        const jobName = hasParentNode.querySelector('.job-name').innerText
+        const companyName = hasParentNode.querySelector('.company-name').innerText
+        const position = hasParentNode.querySelector('.position').innerText
+        const location = hasParentNode.querySelector('.location').innerText
         const jobType = hasParentNode.querySelector('.job-type').innerText
-        const remoteFullTime = hasParentNode.querySelector('.remote-full-time').innerText
+        const salary = hasParentNode.querySelector('.salary').innerText
         const status = hasParentNode.querySelector('.status').innerText
-        const notes = hasParentNode.querySelector('.notes').innerText
+        const description = hasParentNode.querySelector('.description').innerText
 
         hasParentNode.querySelector('.status').innerText = 'Rejected';
 
 
 
         const cardInfo = {
-            jobName,
+            companyName,
+            position,
+            location,
             jobType,
-            remoteFullTime,
-            status: 'Rejected',
-            notes
+            salary,
+            status: 'Interview',
+            description
         }
-        const jobExist = rejectedList.find(item => item.jobName == cardInfo.jobName)
+        const jobExist = rejectedList.find(item => item.companyName == cardInfo.companyName)
 
         if (!jobExist) {
             rejectedList.push(cardInfo)
@@ -157,7 +175,7 @@ mainContainer.addEventListener('click', function (event) {
             console.log('Current rejectedList:', rejectedList);
         }
 
-        interviewList = interviewList.filter(item => item.jobName != cardInfo.jobName)
+        interviewList = interviewList.filter(item => item.companyName != cardInfo.companyName)
 
         if (currentStatus == "interviews-filter-btn") {
             renderInterview();
@@ -166,10 +184,10 @@ mainContainer.addEventListener('click', function (event) {
         updateTabJobsCount()
     } else if (event.target.closest('.fa-trash')) {
         const cardDiv = event.target.closest('.flex.justify-between.bg-white');
-        const jobName = cardDiv.querySelector('.job-name').innerText;
+        const companyName = cardDiv.querySelector('.job-companyName').innerText;
 
-        interviewList = interviewList.filter(item => item.jobName !== jobName);
-        rejectedList = rejectedList.filter(item => item.jobName !== jobName);
+        interviewList = interviewList.filter(item => item.companyName !== companyName);
+        rejectedList = rejectedList.filter(item => item.companyName !== companyName);
 
         cardDiv.remove();
 
@@ -188,22 +206,32 @@ mainContainer.addEventListener('click', function (event) {
 function renderInterview() {
     filterSection.innerHTML = ''
 
+    if (interviewList.length === 0) {
+        document.getElementById('empty-message').classList.remove('hidden');
+        return;
+    } else {
+        document.getElementById('empty-message').classList.add('hidden');
+    }
+
     for (let interview of interviewList) {
         console.log(interview);
 
         let div = document.createElement('div');
         div.className = 'flex justify-between bg-white w-full rounded-md p-5 my-5'
         div.innerHTML = `
-            <div class="">
-                <h2 class="job-name text-lg font-bold">${interview.jobName}</h2>
+            <div>
+                <h2 class="company-name text-lg font-bold">${interview.companyName}</h2>
+                <p class="position text-gray-500 font-bold">${interview.position}</p>
+                <p class="location text-gray-500">${interview.location}</p>
                 <p class="job-type text-gray-500">${interview.jobType}</p>
-                <p class="remote-full-time text-gray-500 py-3">${interview.remoteFullTime}</p>
+                <p class="salary text-gray-500 py-3">${interview.salary}</p>
                 <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${interview.status}</button>
-                <p class="notes text-gray-500 py-7">${interview.notes}</p>
+                <p class="description text-gray-500 py-7">${interview.description}</p>
                 <div class="flex space-x-2">
-                    <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                        >INTERVIEW</button>
-                    <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
+                    <button
+                        class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
+                    <button
+                        class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                 </div>
             </div>
             <div class="p-3 block text-gray-400 cursor-pointer">
@@ -219,27 +247,39 @@ function renderInterview() {
 function renderRejected() {
     filterSection.innerHTML = ''
 
+
+    if (rejectedList.length === 0) {
+        document.getElementById('empty-message').classList.remove('hidden');
+        return;
+    } else {
+        document.getElementById('empty-message').classList.add('hidden');
+    }
+
+
+
     for (let rejected of rejectedList) {
 
         let div = document.createElement('div');
         div.className = 'flex justify-between bg-white w-full rounded-md p-5 my-5'
         div.innerHTML = `
-
-        <div class="">
-                <h2 class="job-name text-lg font-bold">${rejected.jobName}</h2>
-                <p class="job-type text-gray-500">${rejected.jobType}</p>
-                <p class="remote-full-time text-gray-500 py-3">${rejected.remoteFullTime}</p>
-                <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${rejected.status}</button>
-                <p class="notes text-gray-500 py-7">${rejected.notes}</p>
-                <div class="flex space-x-2">
-                    <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                        >INTERVIEW</button>
-                    <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
-                </div>
+        <div>
+            <h2 class="company-name text-lg font-bold">${rejected.companyName}</h2>
+            <p class="position text-gray-500 font-bold">${rejected.position}</p>
+            <p class="location text-gray-500">${rejected.location}</p>
+            <p class="job-type text-gray-500">${rejected.jobType}</p>
+            <p class="salary text-gray-500 py-3">${rejected.salary}</p>
+            <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${rejected.status}</button>
+            <p class="description text-gray-500 py-7">${rejected.description}</p>
+            <div class="flex space-x-2">
+                <button
+                    class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
+                <button
+                    class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
             </div>
-            <div class="p-3 block text-gray-400 cursor-pointer">
-                <i class="fa-solid fa-trash"></i>
-            </div>
+        </div>
+        <div class="p-3 block text-gray-400 cursor-pointer">
+            <i class="fa-solid fa-trash"></i>
+        </div>
         `
         filterSection.appendChild(div);
     }
