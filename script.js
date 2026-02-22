@@ -184,7 +184,7 @@ mainContainer.addEventListener('click', function (event) {
         updateTabJobsCount()
     } else if (event.target.closest('.fa-trash')) {
         const cardDiv = event.target.closest('.flex.justify-between.bg-white');
-        const companyName = cardDiv.querySelector('.job-companyName').innerText;
+        const companyName = cardDiv.querySelector('.company-name').innerText;
 
         interviewList = interviewList.filter(item => item.companyName !== companyName);
         rejectedList = rejectedList.filter(item => item.companyName !== companyName);
