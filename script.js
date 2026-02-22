@@ -2,6 +2,10 @@ let interviewList = [];
 let rejectedList = [];
 let currentStatus = 'all'
 
+let total = document.getElementById('total');
+let interviewCount = document.getElementById('interview-count')
+let rejectedCount = document.getElementById('rejected-count');
+
 let allFilterBtn = document.getElementById('all-filter-btn');
 let interviewsFilterBtn = document.getElementById('interviews-filter-btn');
 let rejectedFilterBtn = document.getElementById('rejected-filter-btn');
@@ -10,6 +14,16 @@ const allCardSection = document.getElementById('allCards');
 
 
 const filterSection = document.getElementById('filtered-section')
+
+
+
+function calculateCount() {
+    total.innerText = allCardSection.children.length
+    interviewCount.innerText = interviewList.length
+    rejectedCount.innerText = rejectedList.length
+}
+
+calculateCount()
 
 
 function toggleStyle(id) {
@@ -86,7 +100,7 @@ mainContainer.addEventListener('click', function (event) {
             renderRejected()
         }
 
-        // calculateCount()
+        calculateCount()
 
     } else if (event.target.classList.contains('rejected-btn')) {
         const hasParentNode = event.target.parentNode.parentNode;
@@ -121,7 +135,7 @@ mainContainer.addEventListener('click', function (event) {
         if (currentStatus == "interviews-filter-btn") {
             renderInterview();
         }
-        // calculateCount()
+        calculateCount()
 
     }
 })
@@ -134,24 +148,22 @@ function renderInterview() {
         console.log(interview);
 
         let div = document.createElement('div');
-        div.className = 'card flex justify-between border p-8'
+        div.className = 'flex justify-between bg-white w-full rounded-md p-5 my-5'
         div.innerHTML = `
-            <div class="flex justify-between bg-white w-full rounded-md p-5">
-                <div class="">
-                    <h2 class="job-name text-lg font-bold">${interview.jobName}</h2>
-                    <p class="job-type text-gray-500">${interview.jobType}</p>
-                    <p class="remote-full-time text-gray-500 py-3">${interview.remoteFullTime}</p>
-                    <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${interview.status}</button>
-                    <p class="notes text-gray-500 py-7">${interview.notes}</p>
-                    <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
-                        <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
-                    </div>
+            <div class="">
+                <h2 class="job-name text-lg font-bold">${interview.jobName}</h2>
+                <p class="job-type text-gray-500">${interview.jobType}</p>
+                <p class="remote-full-time text-gray-500 py-3">${interview.remoteFullTime}</p>
+                <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${interview.status}</button>
+                <p class="notes text-gray-500 py-7">${interview.notes}</p>
+                <div class="flex space-x-2">
+                    <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
+                        >INTERVIEW</button>
+                    <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                 </div>
-                <div class="p-3 block text-gray-400 cursor-pointer">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
+            </div>
+            <div class="p-3 block text-gray-400 cursor-pointer">
+                <i class="fa-solid fa-trash"></i>
             </div>
         `
         filterSection.appendChild(div);
@@ -164,27 +176,23 @@ function renderRejected() {
     filterSection.innerHTML = ''
 
     for (let rejected of rejectedList) {
-        console.log(rejected);
 
         let div = document.createElement('div');
-        div.className = 'card flex justify-between border p-8'
+        div.className = 'flex justify-between bg-white w-full rounded-md p-5 my-5'
         div.innerHTML = `
-            <div class="flex justify-between bg-white w-full rounded-md p-5">
-                <div class="">
-                    <h2 class="job-name text-lg font-bold">${rejected.jobName}</h2>
-                    <p class="job-type text-gray-500">${rejected.jobType}</p>
-                    <p class="remote-full-time text-gray-500 py-3">${rejected.remoteFullTime}</p>
-                    <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${rejected.status}</button>
-                    <p class="notes text-gray-500 py-7">${rejected.notes}</p>
-                    <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
-                        <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
-                    </div>
+            <div>
+                <h2 class="job-name text-lg font-bold">${rejected.jobName}</h2>
+                <p class="job-type text-gray-500">${rejected.jobType}</p>
+                <p class="remote-full-time text-gray-500 py-3">${rejected.remoteFullTime}</p>
+                <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${rejected.status}</button>
+                <p class="notes text-gray-500 py-7">${rejected.notes}</p>
+                <div class="flex space-x-2">
+                    <button class="interview-btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
+                    <button class="rejected-btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                 </div>
-                <div class="p-3 block text-gray-400 cursor-pointer">
-                    <i class="fa-solid fa-trash"></i>
-                </div>
+            </div>
+            <div class="p-3 block text-gray-400 cursor-pointer">
+                <i class="fa-solid fa-trash"></i>
             </div>
         `
         filterSection.appendChild(div);

@@ -20,15 +20,15 @@
         <div id="main-element" class="flex justify-between space-x-4 mt-4">
             <div class="bg-white w-4/12 space-y-3 p-4 rounded-md">
                 <h2 class="text-lg font-bold">Total</h2>
-                <p class="text-2xl font-bold">8</p>
+                <p id="total" class="text-2xl font-bold">8</p>
             </div>
             <div class="bg-white w-4/12 space-y-3 p-4 rounded-md">
                 <h2 class="text-lg font-bold">Interviews</h2>
-                <p class="text-2xl font-bold text-green-500">3</p>
+                <p id="interview-count" class="text-2xl font-bold text-green-500">3</p>
             </div>
             <div class="bg-white w-4/12 space-y-3 p-4 rounded-md">
                 <h2 class="text-lg font-bold">Rejected</h2>
-                <p class="text-2xl font-bold text-red-500">2</p>
+                <p id="rejected-count" class="text-2xl font-bold text-red-500">2</p>
             </div>
         </div>
     </header>
@@ -61,24 +61,25 @@
 
         <section id="allCards" class="space-y-5">
             <div class="flex justify-between bg-white w-full rounded-md p-5">
-                <div class="">
+                <div>
                     <h2 class="job-name text-lg font-bold">Mobile First Corp</h2>
                     <p class="job-type text-gray-500">React Native Developer</p>
                     <p class="remote-full-time text-gray-500 py-3">Remote - Full time - ($130000 - $175000)</p>
                     <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">Not
                         Applied</button>
                     <p class="notes text-gray-500 py-7">Build cross-platform mobile applications using React Native.
-                        Work on
-                        products used by millions of users worldwide.</p>
+                        Work on products used by millions of users worldwide.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
-                        <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
+                        <button
+                            class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
                 <div class="p-3 block text-gray-400 cursor-pointer">
                     <i class="fa-solid fa-trash"></i>
                 </div>
+
             </div>
 
 
@@ -96,8 +97,8 @@
                     <p class="notes text-gray-500 py-7">Create stunning web experiences for high-profile clients. Must
                         have portfolio and experience with modern web design trends.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
@@ -122,8 +123,8 @@
                         skills: D3.js, React, and strong analytical thinking.
                     </p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
@@ -147,8 +148,8 @@
                     <p class="notes text-gray-500 py-7">Design and maintain scalable backend systems using Python and
                         AWS. Work with modern DevOps practices and cloud infrastructure.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
@@ -172,8 +173,8 @@
                     <p class="notes text-gray-500 py-7">Create beautiful and functional user interfaces for our suite of
                         products. Strong design skills and frontend development expertise required.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
@@ -198,8 +199,8 @@
                         frameworks. We offer competitive compensation, health insurance, and professional development
                         opportunities.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
@@ -223,8 +224,8 @@
                     <p class="notes text-gray-500 py-7">Join our fast-growing startup and work on our core platform.
                         Experience with Node.js and React required. Great benefits and equity package included.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
@@ -249,8 +250,8 @@
                         scalable web applications using React and TypeScript. You will work with a talented team on
                         cutting-edge projects.</p>
                     <div class="flex space-x-2">
-                        <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
-                            id="interview-btn">INTERVIEW</button>
+                        <button
+                            class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
                         <button class="btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                     </div>
                 </div>
