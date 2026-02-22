@@ -14,8 +14,23 @@ const allCardSection = document.getElementById('allCards');
 
 
 const filterSection = document.getElementById('filtered-section')
+const tabJobsCount = document.getElementById('tab-jobs-count');
 
+function updateTabJobsCount() {
+    let count = 8;
 
+    if (currentStatus === 'all-filter-btn') {
+        count = allCardSection.children.length;
+    } else if (currentStatus === 'interviews-filter-btn') {
+        count = interviewList.length;
+    } else if (currentStatus === 'rejected-filter-btn') {
+        count = rejectedList.length;
+    }
+
+    tabJobsCount.innerText = count;
+}
+
+updateTabJobsCount()
 
 function calculateCount() {
     total.innerText = allCardSection.children.length
@@ -60,13 +75,15 @@ function toggleStyle(id) {
         filterSection.classList.remove('hidden')
         renderRejected()
     }
+    updateTabJobsCount();
 }
 
 
 
 mainContainer.addEventListener('click', function (event) {
     if (event.target.classList.contains('interview-btn')) {
-        const hasParentNode = event.target.parentNode.parentNode;
+        // const hasParentNode = event.target.parentNode.parentNode;
+        const hasParentNode = event.target.closest('.flex.justify-between.bg-white');
 
         const jobName = hasParentNode.querySelector('.job-name').innerText
         const jobType = hasParentNode.querySelector('.job-type').innerText
@@ -75,6 +92,8 @@ mainContainer.addEventListener('click', function (event) {
         const notes = hasParentNode.querySelector('.notes').innerText
 
         hasParentNode.querySelector('.status').innerText = 'Interview';
+
+
 
         const cardInfo = {
             jobName,
@@ -101,9 +120,11 @@ mainContainer.addEventListener('click', function (event) {
         }
 
         calculateCount()
+        updateTabJobsCount()
 
     } else if (event.target.classList.contains('rejected-btn')) {
-        const hasParentNode = event.target.parentNode.parentNode;
+        // const hasParentNode = event.target.parentNode.parentNode;
+        const hasParentNode = event.target.closest('.flex.justify-between.bg-white');
 
         const jobName = hasParentNode.querySelector('.job-name').innerText
         const jobType = hasParentNode.querySelector('.job-type').innerText
@@ -112,6 +133,8 @@ mainContainer.addEventListener('click', function (event) {
         const notes = hasParentNode.querySelector('.notes').innerText
 
         hasParentNode.querySelector('.status').innerText = 'Rejected';
+
+
 
         const cardInfo = {
             jobName,
@@ -136,7 +159,7 @@ mainContainer.addEventListener('click', function (event) {
             renderInterview();
         }
         calculateCount()
-
+        updateTabJobsCount()
     }
 })
 
@@ -180,15 +203,17 @@ function renderRejected() {
         let div = document.createElement('div');
         div.className = 'flex justify-between bg-white w-full rounded-md p-5 my-5'
         div.innerHTML = `
-            <div>
+
+        <div class="">
                 <h2 class="job-name text-lg font-bold">${rejected.jobName}</h2>
                 <p class="job-type text-gray-500">${rejected.jobType}</p>
                 <p class="remote-full-time text-gray-500 py-3">${rejected.remoteFullTime}</p>
                 <button class="status btn py-2 px-6 font-bold bg-blue-100 rounded-md text-blue-500 mt-5">${rejected.status}</button>
                 <p class="notes text-gray-500 py-7">${rejected.notes}</p>
                 <div class="flex space-x-2">
-                    <button class="interview-btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer">INTERVIEW</button>
-                    <button class="rejected-btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
+                    <button class="interview-btn btn py-2 px-4 outline-1 rounded-md text-green-500 cursor-pointer"
+                        >INTERVIEW</button>
+                    <button class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                 </div>
             </div>
             <div class="p-3 block text-gray-400 cursor-pointer">
