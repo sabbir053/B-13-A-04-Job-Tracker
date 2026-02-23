@@ -235,7 +235,9 @@ function renderInterview() {
                 </div>
             </div>
             <div class="p-3 block text-gray-400 cursor-pointer">
-                <i class="fa-solid fa-trash"></i>
+                <div class="p-2 border-2 border-gray-200 rounded-full">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
             </div>
         `
         filterSection.appendChild(div);
@@ -278,7 +280,9 @@ function renderRejected() {
             </div>
         </div>
         <div class="p-3 block text-gray-400 cursor-pointer">
-            <i class="fa-solid fa-trash"></i>
+            <div class="p-2 border-2 border-gray-200 rounded-full">
+                <i class="fa-solid fa-trash"></i>
+            </div>
         </div>
         `
         filterSection.appendChild(div);
