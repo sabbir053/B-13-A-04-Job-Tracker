@@ -234,8 +234,8 @@ function renderInterview() {
                         class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
                 </div>
             </div>
-            <div class="p-3 block text-gray-400 cursor-pointer">
-                <div class="p-2 border-2 border-gray-200 rounded-full">
+            <div class="text-gray-500 cursor-pointer mr-2">
+                <div class="p-1 border-2 border-gray-300 rounded-full">
                     <i class="fa-solid fa-trash"></i>
                 </div>
             </div>
@@ -279,8 +279,8 @@ function renderRejected() {
                     class="rejected-btn btn py-2 px-4 outline-1 rounded-md text-red-500 cursor-pointer">REJECTED</button>
             </div>
         </div>
-        <div class="p-3 block text-gray-400 cursor-pointer">
-            <div class="p-2 border-2 border-gray-200 rounded-full">
+        <div class="text-gray-500 cursor-pointer mr-2">
+            <div class="p-1 border-2 border-gray-300 rounded-full">
                 <i class="fa-solid fa-trash"></i>
             </div>
         </div>
