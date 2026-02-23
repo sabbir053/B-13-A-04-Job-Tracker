@@ -23,13 +23,3 @@
 	*Ans: preventDefault() stops the default browser action for in a event.
 
 			stopPropagation() stops the event from bubbling up to parent elements.
-
-
-
-
-
--------
-## What to submit: 
-
-1. GitHub Repository Link: 
-2. Live Site Link: 
